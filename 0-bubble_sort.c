@@ -22,25 +22,28 @@ void swap(int *x, int *y)
  * @array: array of elements to be sorted
  * @size: size of the array
  *
- * Return - Void (nothing)
+ * Description - Print the array afteer each swap
  **/
 void bubble_sort(int *array, size_t size)
 {
-	unsigned int i, j, n = size;
+	size_t i, len = size;
+	bool bubbly = false;
 
-	if (n < 2)
-		return (1);
+	if (array == NULL || size < 2)
+		return;
 
-	for (i = 0; i < n; i++)
+	while (bubbly == false)
 	{
-		for (j = 0; j < n; j++)
+		bubbly = true;
+		for (i = 0; i < len - 1; i++)
 		{
-			if (array[j] > array[j + 1])
-				swap(&array[j + 1], &array[j]);
-			_putchar((array[j]) + '0');
-			_putchar(',');
-			_putchar(' ');
+			if (array[i] > array[i + 1])
+			{
+				swap(array + i, array + i + 1);
+				print_array(array, size);
+				bubbly = false;
+			}
 		}
-		_putchar('\n');
+		len--;
 	}
 }
